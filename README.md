@@ -12,28 +12,28 @@ The dataset includes information about various vehicles sold by the dealership, 
 
 ## Data Columns
 
-Column	Description	Data Type
-Year	Year of the vehicle	int
-Make	Make of the vehicle	object
-Model	Model of the vehicle	object
-Color	Color of the vehicle	object
-Body_Style	Body style of the vehicle	object
-OEM	Original Equipment Manufacturer	object
-Mileage	Mileage of the vehicle	int
-Purchase_Date	Date when the vehicle was purchased	object
-Purchased_From	Source from where the vehicle was purchased	object
-Floor_Plan	Financing plan for the vehicle	object
-Vin_Number	Vehicle Identification Number	object
-Total_Cost	Total cost of the vehicle	object
-Repairs_Expenses	Expenses for repairs	object
-Sale_Price	Sale price of the vehicle	object
-TTL	Tax, Title, and License fee	int
-Sale_Price_With_TTL	Sale price including TTL	int
-Profit	Profit from the sale	int
-Sale_Date	Date of sale	object
-Time_On_Lot	Number of days the vehicle was on the lot	int
-Percentage_Of_Return	Percentage of return on investment	object
-
+| Column                  | Description                             | Data Type      |
+| :---------------------- | :-------------------------------------- | :------------- |
+| Year            | Year of the vehicle             | int   |
+| Make                  | Make of the vehicle         | object    |
+| Model                    | Model of the vehicle              | object    |
+| Color           | Color of the vehicle               | object    |
+| Body_style                  | body style of the vehicle  | object  |
+| OEM            | Original Equipment Manufacturerer       | object   |
+| Mileage              | Mileage of the vehicle              | int |
+| Purchase_date                | Date when the vehicle was purchased         | object            |
+| Purchased_from                 | Sources from where the vehicle was purchased      | object     |
+| Floor_plan                   | Financing plan for the vehicle        | object  |
+| Vin_number                    | vehicle identification number | object            |
+| Total_cost                    | Total cost of the vehicle | object       |
+| Repairs_expenses                 | Expenses for repairs                  | object  |
+| Sale_Price                    | Sale price of the vehicle                    | object  |
+| TTL | Tax, Title, and License fee                | int   |
+| Sale_price_with_ttl            | Sale price including TTL                           | int |
+| Profit                  | Profit from the sale                                  | int    |
+| Sale_date | Date of sale               | object   |
+| Time_on_lot            | Number of days the vehicle was on the lot                           | int |
+| Percentage_of_return                  | Percentage of return on investment                                 | object    |
 
 
 ## Analysis Goals
