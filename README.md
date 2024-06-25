@@ -12,52 +12,55 @@ The dataset includes information about various vehicles sold by the dealership, 
 
 ## Data Columns
 
-Year: Year of the vehicle
-Make: Make of the vehicle
-Model: Model of the vehicle
-Color: Color of the vehicle
-Body_Style: Body style of the vehicle
-OEM: Original Equipment Manufacturer
-Mileage: Mileage of the vehicle
-Purchase_Date: Date when the vehicle was purchased
-Purchased_From: Source from where the vehicle was purchased
-Floor_Plan: Financing plan for the vehicle
-Vin_Number: Vehicle Identification Number
-Total_Cost: Total cost of the vehicle
-Repairs_Expenses: Expenses for repairs
-Sale_Price: Sale price of the vehicle
-TTL: Tax, Title, and License fee
-Sale_Price_With_TTL: Sale price including TTL
-Profit: Profit from the sale
-Sale_Date: Date of sale
-Time_On_Lot: Number of days the vehicle was on the lot
-Percentage_Of_Return: Percentage of return on investment
+Column	Description	Data Type
+Year	Year of the vehicle	int
+Make	Make of the vehicle	object
+Model	Model of the vehicle	object
+Color	Color of the vehicle	object
+Body_Style	Body style of the vehicle	object
+OEM	Original Equipment Manufacturer	object
+Mileage	Mileage of the vehicle	int
+Purchase_Date	Date when the vehicle was purchased	object
+Purchased_From	Source from where the vehicle was purchased	object
+Floor_Plan	Financing plan for the vehicle	object
+Vin_Number	Vehicle Identification Number	object
+Total_Cost	Total cost of the vehicle	object
+Repairs_Expenses	Expenses for repairs	object
+Sale_Price	Sale price of the vehicle	object
+TTL	Tax, Title, and License fee	int
+Sale_Price_With_TTL	Sale price including TTL	int
+Profit	Profit from the sale	int
+Sale_Date	Date of sale	object
+Time_On_Lot	Number of days the vehicle was on the lot	int
+Percentage_Of_Return	Percentage of return on investment	object
+
 
 
 ## Analysis Goals
 
-Sales Analysis: Calculate total sales, total profit, and the number of vehicles sold.
-Product Analysis: Identify top-selling makes and models.
-Profit Analysis: Determine the correlation between vehicle color and average profit.
-Inventory Management: Analyze trends in the time vehicles spend on the lot.
-Profit Margins: Calculate average profit margins per vehicle sold.
+1. Sales Analysis: Calculate total sales, total profit, and the number of vehicles sold.
+2. Product Analysis: Identify top-selling makes and models.
+3. Profit Analysis: Determine the correlation between vehicle color and average profit.
+4. Inventory Management: Analyze trends in the time vehicles spend on the lot.
+5. Profit Margins: Calculate average profit margins per vehicle sold.
+
 
 
 ## Approach
 
-Data Wrangling: Clean the data, handle missing values, and ensure data integrity.
-Feature Engineering: Create new columns if needed to enhance analysis.
-Exploratory Data Analysis (EDA): Answer key business questions using SQL queries.
+1. Data Wrangling: Clean the data, handle missing values, and ensure data integrity.
+2. Feature Engineering: Create new columns if needed to enhance analysis.
+3. Exploratory Data Analysis (EDA): Answer key business questions using SQL queries.
 
 
 ## Key Business Questions
 
-What was the total sales and profit for the dealership in 2017?
-How many vehicles were sold in 2017?
-What are the top-selling makes and models?
-Is there a correlation between vehicle color and average profit?
-Which body style tends to have the highest profit margins?
-Are there any trends in the time vehicles spend on the lot before being sold?
-What is the average profit margin per vehicle sold?
+1. What was the total sales and profit for the dealership in 2017?
+2. How many vehicles were sold in 2017?
+3. What are the top-selling makes and models?
+4. Is there a correlation between vehicle color and average profit?
+5. Which body style tends to have the highest profit margins?
+6. Are there any trends in the time vehicles spend on the lot before being sold?
+7. What is the average profit margin per vehicle sold?
 
 You can find the code for this project [HERE](https://github.com/Dilan-GitHub/AutomotiveSales/blob/main/RND2017.sql)
