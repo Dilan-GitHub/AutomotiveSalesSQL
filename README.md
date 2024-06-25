@@ -63,4 +63,4 @@ The dataset includes information about various vehicles sold by the dealership, 
 6. Are there any trends in the time vehicles spend on the lot before being sold?
 7. What is the average profit margin per vehicle sold?
 
-You can find the code for this project [HERE](https://github.com/Dilan-GitHub/AutomotiveSales/blob/main/RND2017.sql)
+You can find the code for this project [HERE](https://github.com/Dilan-GitHub/AutomotiveSales/blob/main/Automotivesales.sql)
