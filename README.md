@@ -57,4 +57,4 @@ Which body style tends to have the highest profit margins?
 Are there any trends in the time vehicles spend on the lot before being sold?
 What is the average profit margin per vehicle sold?
 
-You can find the code for this project [HERE](https://github.com/Dilan-GitHub/WalmartSalesDataAnalysis/blob/main/WalmartSalesAnalysis.sql)
+You can find the code for this project [HERE](https://github.com/Dilan-GitHub/AutomotiveSales/blob/main/RND2017.sql)
