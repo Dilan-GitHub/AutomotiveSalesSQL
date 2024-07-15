@@ -2,7 +2,7 @@
 
 -- What is the total profit for total sales of the dealership? This will give us details of how much profit the dealership made in one year.
 
---How many vehicles were sold in 2017? This will give us a number of how many vehicles the dealership sold that year
+-- How many vehicles were sold in 2017? This will give us a number of how many vehicles the dealership sold that year
 
 SELECT 
 SUM(Sale_Price) AS total_sales,
