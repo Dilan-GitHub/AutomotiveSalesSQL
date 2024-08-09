@@ -16,7 +16,7 @@ SELECT
     YEAR(CONVERT(DATE, Sale_Date, 101)) AS year,
     MONTH(CONVERT(DATE, Sale_Date, 101)) AS month,
     COUNT(*) AS cars_sold,
-    SUM(CAST(Sale_Price AS DECIMAL(10, 2))) AS total_sales
+    SUM(Sale_Price) AS total_sales
 FROM 
     rnd
 GROUP BY 
@@ -31,7 +31,7 @@ SELECT
     YEAR(CONVERT(DATE, Sale_Date, 101)) AS year,
     DATEPART(QUARTER, CONVERT(DATE, Sale_Date, 101)) AS quarter,
     COUNT(*) AS cars_sold,
-    SUM(CAST(Sale_Price AS DECIMAL(10, 2))) AS total_sales
+    SUM(Sale_Price) AS total_sales
 FROM 
     rnd
 GROUP BY 
@@ -48,7 +48,7 @@ SELECT TOP 10
     Make,
     Model,
     COUNT(*) AS cars_sold,
-    SUM(CAST(REPLACE(Sale_Price, ',', '') AS DECIMAL(10, 2))) AS total_sales
+    SUM(Sale_Price) AS total_sales
 FROM 
     rnd
 GROUP BY 
@@ -75,7 +75,7 @@ ORDER BY
 SELECT 
     body,
     COUNT(*) AS cars_sold,
-    SUM(CAST(REPLACE(Sale_Price, ',', '') AS DECIMAL(10, 2))) AS total_sales
+    SUM(Sale_Price) AS total_sales
 FROM 
     rnd
 GROUP BY 
@@ -87,7 +87,7 @@ ORDER BY
 
 -- Profit Margins for Each Car Make and Model
 SELECT make, model, profit, total_cost, 
-       ROUND((profit / CAST(total_cost AS FLOAT)) * 100, 1) AS profit_margin_percentage
+       ROUND(100 * profit /total_cost, 1) AS profit_margin_percentage
 FROM rnd 
 ORDER BY profit_margin_percentage DESC;
 
@@ -95,16 +95,16 @@ ORDER BY profit_margin_percentage DESC;
 -- Inventory turnover by make
 SELECT make, AVG(time_on_lot) AS avg_time_to_sell
 FROM rnd
-group by make
-order by avg(time_on_lot) DESC
+GROUP BY make
+ORDER BY avg(time_on_lot) DESC
 
 -- Inventory turnover by model
 SELECT model, AVG(time_on_lot) AS avg_time_to_sell
 FROM rnd
-group by model
-order by avg(time_on_lot) ASC
+GROUP BY model
+ORDER BY avg(time_on_lot) ASC
 
--- Marketing and SAles Channels
+-- Marketing and Sales Channels
 
 -- Which marketing campaigns or channels (e.g., purchased from) generated the most sales?
 SELECT 
