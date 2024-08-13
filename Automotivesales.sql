@@ -13,33 +13,40 @@ FROM rnd
 
 -- Monthly Sales Trends
 SELECT 
-    YEAR(CONVERT(DATE, Sale_Date, 101)) AS year,
-    MONTH(CONVERT(DATE, Sale_Date, 101)) AS month,
-    COUNT(*) AS cars_sold,
-    SUM(Sale_Price) AS total_sales
+    CONVERT(VARCHAR(7), s_date, 120) AS month, 
+    SUM(sale_price) AS total_sales,
+    COUNT(*) AS vehicles_sold
 FROM 
     rnd
 GROUP BY 
-    YEAR(CONVERT(DATE, Sale_Date, 101)), 
-    MONTH(CONVERT(DATE, Sale_Date, 101))
+    CONVERT(VARCHAR(7), s_date, 120)
 ORDER BY 
-    year, 
     month;
 
 -- Quarterly Sales Trends
 SELECT 
-    YEAR(CONVERT(DATE, Sale_Date, 101)) AS year,
-    DATEPART(QUARTER, CONVERT(DATE, Sale_Date, 101)) AS quarter,
-    COUNT(*) AS cars_sold,
-    SUM(Sale_Price) AS total_sales
+    YEAR(s_date) AS year,
+    CASE
+        WHEN MONTH(s_date) IN (1, 2, 3) THEN 'Q1'
+        WHEN MONTH(s_date) IN (4, 5, 6) THEN 'Q2'
+        WHEN MONTH(s_date) IN (7, 8, 9) THEN 'Q3'
+        WHEN MONTH(s_date) IN (10, 11, 12) THEN 'Q4'
+    END AS quarter,
+    SUM(sale_price) AS total_sales,
+    COUNT(*) AS vehicles_sold
 FROM 
     rnd
 GROUP BY 
-    YEAR(CONVERT(DATE, Sale_Date, 101)), 
-    DATEPART(QUARTER, CONVERT(DATE, Sale_Date, 101))
+    YEAR(s_date), 
+    CASE
+        WHEN MONTH(s_date) IN (1, 2, 3) THEN 'Q1'
+        WHEN MONTH(s_date) IN (4, 5, 6) THEN 'Q2'
+        WHEN MONTH(s_date) IN (7, 8, 9) THEN 'Q3'
+        WHEN MONTH(s_date) IN (10, 11, 12) THEN 'Q4'
+    END
 ORDER BY 
-    year, 
-    quarter;
+    year, quarter;
+
 
 -- Sales by Car Models and Makes
 
@@ -62,7 +69,7 @@ SELECT TOP 10
     Make,
     Model,
     COUNT(*) AS cars_sold,
-    SUM(CAST(REPLACE(Sale_Price, ',', '') AS DECIMAL(10, 2))) AS total_sales
+    SUM(Sale_Price) AS total_sales
 FROM 
     rnd
 GROUP BY 
@@ -87,11 +94,12 @@ ORDER BY
 
 -- Profit Margins for Each Car Make and Model
 SELECT make, model, profit, total_cost, 
-       ROUND(100 * profit /total_cost, 1) AS profit_margin_percentage
+       CONCAT(ROUND(100 * profit / total_cost, 0), '%') AS profit_margin
 FROM rnd 
-ORDER BY profit_margin_percentage DESC;
+ORDER BY 100 * profit / total_cost DESC;
 
 -- Inventory Management
+
 -- Inventory turnover by make
 SELECT make, AVG(time_on_lot) AS avg_time_to_sell
 FROM rnd
@@ -108,59 +116,61 @@ ORDER BY avg(time_on_lot) ASC
 
 -- Which marketing campaigns or channels (e.g., purchased from) generated the most sales?
 SELECT 
-    purchased_from AS sales_channel, 
+    auction AS sales_channel, 
     COUNT(*) AS total_sales,
     SUM(profit) AS total_profit,
     AVG(profit) AS average_profit
 FROM 
     rnd
 GROUP BY 
-    purchased_from
+    auction
 ORDER BY 
     total_sales DESC;
 
 -- Sales forcasting for next year
+
 -- Step 1: Calculate Monthly Sales for Last Year
 SELECT 
-    DATEPART(MONTH, sale_date) AS sale_month, 
+    DATEPART(MONTH, s_date) AS sale_month, 
     COUNT(*) AS monthly_sales
 FROM 
     rnd
 WHERE 
-    DATEPART(YEAR, sale_date) = 2017
+    DATEPART(YEAR, s_date) = 2017
 GROUP BY 
-    DATEPART(MONTH, sale_date)
+    DATEPART(MONTH, s_date)
 ORDER BY 
     sale_month;
 
 -- Step 2: Calculate Average Monthly Sales
 WITH monthly_sales AS (
     SELECT 
-        DATEPART(MONTH, sale_date) AS sale_month, 
+        DATEPART(MONTH, s_date) AS sale_month, 
         COUNT(*) AS monthly_sales
     FROM 
         rnd
     WHERE 
-        DATEPART(YEAR, sale_date) = 2017
+        DATEPART(YEAR, s_date) = 2017
     GROUP BY 
-        DATEPART(MONTH, sale_date)
+        DATEPART(MONTH, s_date)
 )
 SELECT 
     AVG(monthly_sales) AS average_monthly_sales
 FROM 
     monthly_sales;
 
+
 -- Step 3: Project Sales for the Coming Year
 WITH monthly_sales AS (
     SELECT 
-        DATEPART(MONTH, sale_date) AS sale_month, 
+        DATEPART(MONTH, s_date) AS sale_month, 
         COUNT(*) AS monthly_sales
     FROM 
         rnd
     WHERE 
-        DATEPART(YEAR, sale_date) = 2017
+        DATEPART(YEAR, s_date) = 2017
     GROUP BY 
-        DATEPART(MONTH, sale_date)
+        DATEPART(MONTH, s_date)
 ),
 average_sales AS (
     SELECT 
@@ -173,19 +183,20 @@ SELECT
 FROM 
     average_sales;
 
+
 -- What should be the inventory strategy for the next year based on past sales trends?
 
 -- Calculate average, max, and min monthly sales
 WITH monthly_sales AS (
     SELECT 
-        DATEPART(MONTH, sale_date) AS sale_month, 
+        DATEPART(MONTH, s_date) AS sale_month, 
         COUNT(*) AS monthly_sales
     FROM 
         rnd
     WHERE 
-        DATEPART(YEAR, sale_date) = 2017
+        DATEPART(YEAR, s_date) = 2017
     GROUP BY 
-        DATEPART(MONTH, sale_date)
+        DATEPART(MONTH, s_date)
 ),
 sales_stats AS (
     SELECT 
@@ -214,14 +225,14 @@ FROM
 -- Calculate average and standard deviation of monthly sales for 2017
 WITH monthly_sales AS (
     SELECT 
-        DATEPART(MONTH, sale_date) AS sale_month, 
+        DATEPART(MONTH, s_date) AS sale_month, 
         COUNT(*) AS monthly_sales
     FROM 
         rnd
     WHERE 
-        DATEPART(YEAR, sale_date) = 2017
+        DATEPART(YEAR, s_date) = 2017
     GROUP BY 
-        DATEPART(MONTH, sale_date)
+        DATEPART(MONTH, s_date)
 ),
 sales_stats AS (
     SELECT 
