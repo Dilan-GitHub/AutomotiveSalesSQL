@@ -8,31 +8,32 @@ This project analyzes a dataset of car sales, focusing on various aspects such a
 The dataset was collected from the dealership's records for the year 2017.
 
 ## Dataset Description
-The dataset includes information about various vehicles sold by the dealership, including their make, model, color, purchase details, sale details, and profit margins. The dataset contains 20 columns and 97 rows.
+The dataset includes information about various vehicles sold by the dealership, including their make, model, color, purchase details, sale details, and profit margins. The dataset contains 19 columns and 96 rows.
 
 ## Data Columns
 
 | Column                  | Description                             | Data Type      |
 | :---------------------- | :-------------------------------------- | :------------- |
-| Year            | Year of the vehicle             | int   |
-| Make                  | Make of the vehicle         | object    |
-| Model                    | Model of the vehicle              | object    |
-| Color           | Color of the vehicle               | object    |
-| Body                  | body style of the vehicle  | object  |
-| OEM            | Original Equipment Manufacturerer       | object   |
+| Vin            | Vin Number of the vehicle             | nvarchar(50)   |
+| Year            | Year of the vehicle             | smallint   |
+| Make                  | Make of the vehicle         | nvarchar(50)     |
+| Model                    | Model of the vehicle              | nvarchar(50)     |
+| Color           | Color of the vehicle               | nvarchar(50)     |
+| Body                  | body style of the vehicle  | nvarchar(50)   |
+| OEM            | Original Equipment Manufacturerer       | nvarchar(50)    |
 | Mileage              | Mileage of the vehicle              | int |
-| Purchase_date                | Date when the vehicle was purchased         | object            |
-| Purchased_from                 | Sources from where the vehicle was purchased      | object     |
-| Floorplan                   | Financing plan for the vehicle        | object  |
-| Vin_number                    | vehicle identification number | object            |
-| Total_cost                    | Total cost of the vehicle | object       |
-| Expenses                 | Expenses for repairs                  | object  |
-| Sale_Price                    | Sale price of the vehicle                    | object  |
-| TTL | Tax, Title, and License fee                | int   |
-|Total_price           | Sale price including TTL                           | int |
-| Profit                  | Profit from the sale                                  | int    |
-| Sale_date | Date of sale               | object   |
-| Time_on_lot            | Number of days the vehicle was on the lot                           | int |
+| P_date                | Date when the vehicle was purchased         | date            |
+| S_date                | Date when the vehicle was sold         | date            |
+| Time_on_lot            | Number of days the vehicle was on the lot                           | smallint |
+| Auction                 | Sources from where the vehicle was purchased      | nvarchar(50)      |
+| Floorplan                   | Financing plan for the vehicle        | nvarchar(50)   |
+| Total_cost                    | Total cost of the vehicle | smallint       |
+| Expenses                 | Expenses for repairs                  | smallint  |
+| Sale_Price                    | Sale price of the vehicle                    | smallint  |
+| TTL | Tax, Title, and License fee                | smallint   |
+|Total_price           | Sale price including TTL                           | smallint |
+| Profit                  | Profit from the sale                                  | smallint    |
+
 
 
 ## Analysis Goals
